@@ -1,5 +1,8 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+![GitHub](https://img.shields.io/github/license/joaoberte/reactflix?style=flat-square)
+
 ## Available Scripts
 
 In the project directory, you can run:
