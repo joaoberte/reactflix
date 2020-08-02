@@ -6,26 +6,26 @@ import PageDefault from '../../components/PageDefault';
 
 function Home() {
   return (
-    <div style={{ background: "#141414" }} >
+    <div>
       <PageDefault>
 
-      <BannerMain
-        videoTitle={dadosIniciais.categorias[0].videos[0].titulo}
-        url={dadosIniciais.categorias[0].videos[0].url}
-        videoDescription={"Descrição Video"}
-      />
+        <BannerMain
+          videoTitle={dadosIniciais.categorias[0].videos[0].titulo}
+          url={dadosIniciais.categorias[0].videos[0].url}
+          videoDescription={"Descrição Video"}
+        />
 
-      <Carousel ignoreFirstVideo category={dadosIniciais.categorias[0]} />
+        <Carousel ignoreFirstVideo category={dadosIniciais.categorias[0]} />
 
-      <Carousel ignoreFirstVideo category={dadosIniciais.categorias[1]} />
+        <Carousel ignoreFirstVideo category={dadosIniciais.categorias[1]} />
 
-      <Carousel ignoreFirstVideo category={dadosIniciais.categorias[2]} />
+        <Carousel ignoreFirstVideo category={dadosIniciais.categorias[2]} />
 
-      <Carousel ignoreFirstVideo category={dadosIniciais.categorias[3]} />
+        <Carousel ignoreFirstVideo category={dadosIniciais.categorias[3]} />
 
-      <Carousel ignoreFirstVideo category={dadosIniciais.categorias[4]} />
+        <Carousel ignoreFirstVideo category={dadosIniciais.categorias[4]} />
 
-      <Carousel ignoreFirstVideo category={dadosIniciais.categorias[5]} />
+        <Carousel ignoreFirstVideo category={dadosIniciais.categorias[5]} />
 
       </PageDefault>
     </div>
