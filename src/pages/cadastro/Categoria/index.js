@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PageDefault from '../../../components/PageDefault';
 import FormField from '../../../components/FormField';
+import Button from '../../../components/Button'
 import { Link } from 'react-router-dom';
 
 
@@ -40,30 +41,30 @@ function CadastroCategoria() {
             }}>
 
                 <FormField
-                    label="Nome"
-                    type="text"
-                    name="name"
+                    label='Nome'
+                    type='text'
+                    name='name'
                     value={values.name}
                     onChange={handleChange}
                 />
 
                 <FormField
-                    label="Descrição"
-                    type="textarea"
-                    name="description"
+                    label='Descrição'
+                    type='textarea'
+                    name='description'
                     value={values.description}
                     onChange={handleChange}
                 />
 
                 <FormField
-                    label="Cor"
-                    type="color"
-                    name="color"
+                    label='Cor'
+                    type='color'
+                    name='color'
                     value={values.color}
                     onChange={handleChange}
                 />
 
-                <button>Cadastrar</button>
+                <Button>Cadastrar</Button>
             </form>
 
             <ul>
@@ -76,7 +77,7 @@ function CadastroCategoria() {
                 })}
             </ul>
 
-            <Link to="/">
+            <Link to='/'>
                 Home
             </Link>
         </PageDefault>
