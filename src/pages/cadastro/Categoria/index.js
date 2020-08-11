@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import PageDefault from '../../../components/PageDefault';
 import FormField from '../../../components/FormField';
 import Button from '../../../components/Button'
+import useForm from '../../../hooks/useForm'
 import { Link } from 'react-router-dom';
-
 
 function CadastroCategoria() {
     const initialValues = {
@@ -12,24 +12,16 @@ function CadastroCategoria() {
         color: '',
     }
 
+    const { values, handleChange, clearForm } = useForm(initialValues);
+
     const [categories, setCategories] = useState([]);
-    const [values, setValues] = useState(initialValues);
-
-    function setValue(key, value) {
-        setValues({
-            ...values,
-            [key]: value,
-        });
-    }
-
-    function handleChange(event) {
-        setValue(event.target.name, event.target.value)
-    }
 
     useEffect(() => {
-        const urlServer = "http://localhost:8080/categories";
+        const URL_SERVER = window.location.hostname.includes('localhost') ?
+            'http://localhost:8080/categories'
+            : 'https://reactflix-app.herokuapp.com/categories';
 
-        fetch(urlServer)
+        fetch(URL_SERVER)
             .then(async (response) => {
                 const jsonContent = await response.json();
                 setCategories([...jsonContent]);
@@ -49,7 +41,7 @@ function CadastroCategoria() {
                     values
                 ]);
 
-                setValues(initialValues);
+                clearForm(initialValues);
             }}>
 
                 <FormField
@@ -77,6 +69,7 @@ function CadastroCategoria() {
                 />
 
                 <Button>Cadastrar</Button>
+                
             </form>
 
             {categories.length === 0 && (

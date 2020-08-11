@@ -1,35 +1,55 @@
-import React from 'react';
-import dadosIniciais from '../../data/dados_iniciais.json';
+import React, { useEffect, useState } from 'react';
 import BannerMain from '../../components/BannerMain';
 import Carousel from '../../components/Carousel';
 import PageDefault from '../../components/PageDefault';
+import categoriesRepository from '../../repositories/categories';
 
 function Home() {
-  return (
-    <div>
-      <PageDefault>
 
-        <BannerMain
-          videoTitle={dadosIniciais.categorias[0].videos[0].titulo}
-          url={dadosIniciais.categorias[0].videos[0].url}
-          videoDescription={"Descrição Video"}
-        />
+    const [initialValues, setInitialValues] = useState([]);
 
-        <Carousel ignoreFirstVideo category={dadosIniciais.categorias[0]} />
+    useEffect(() => {
+        categoriesRepository.getAllwithVideos()
+            .then((categoriesWithVideos) => {
+                setInitialValues(categoriesWithVideos);
+            }).catch((err) => {
+                console.log(err.message);
+            });
+    }, []);
 
-        <Carousel ignoreFirstVideo category={dadosIniciais.categorias[1]} />
+    return (
+        <PageDefault paddingAll={0}>
 
-        <Carousel ignoreFirstVideo category={dadosIniciais.categorias[2]} />
+            {initialValues.length === 0 && (<div>Loading...</div>)}
 
-        <Carousel ignoreFirstVideo category={dadosIniciais.categorias[3]} />
+            {initialValues.map((category, index) => {
 
-        <Carousel ignoreFirstVideo category={dadosIniciais.categorias[4]} />
+                if (index === 0) {
+                    return (
+                        <div key={category.id}>
+                            <BannerMain
+                                videoTitle={category.videos[0].name}
+                                url={category.videos[0].url}
+                                videoDescription={category.videos[0].description}
+                            />
+                            <Carousel
+                                ignoreFirstVideo
+                                category={category}
+                            />
+                        </div>
+                    );
+                }
 
-        <Carousel ignoreFirstVideo category={dadosIniciais.categorias[5]} />
+                return (
+                    <Carousel
+                        key={category.id}
+                        category={category}
+                    />
+                );
+            })}
 
-      </PageDefault>
-    </div>
-  );
+        </PageDefault>
+    );
 }
 
 export default Home;
